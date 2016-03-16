@@ -16,11 +16,13 @@ import mock
 import testtools
 
 from muranoclient import client
+import muranoclient.v1.cloud_credentials as cloudCredential
 from muranoclient.v1 import actions
 import muranoclient.v1.environments as environments
 from muranoclient.v1 import packages
 import muranoclient.v1.sessions as sessions
 import muranoclient.v1.templates as templates
+
 
 
 def my_mock(*a, **b):
@@ -323,3 +325,33 @@ class UnitTestsForClassesAndFunctions(testtools.TestCase):
         result = manager.get('test')
 
         self.assertIsNotNone(result.manager)
+
+    def test_cloud_credential_list(self):
+        """It tests the list of cloud credential.
+        """
+        manager = cloudCredential.CloudCredentialManager(api)
+        result = manager.list()
+
+        self.assertEqual([], result)
+
+    def test_cloud_credential_create(self):
+        manager = cloudCredential.CloudCredentialManager(api)
+        result = manager.create({'name': 'test'})
+
+        self.assertEqual({'name': 'test'}, result.data)
+
+    def test_cloud_credential_create_negative_without_parameters(self):
+        manager = cloudCredential.CloudCredentialManager(api)
+        self.assertRaises(TypeError, manager.create)
+
+    def test_cloud_credential_create_get(self):
+        manager = cloudCredential.CloudCredentialManager(api)
+        result = manager.get('test')
+
+        self.assertIsNotNone(result.manager)
+
+    def test_cloud_credential_delete(self):
+        manager = cloudCredential.CloudCredentialManager(api)
+        result = manager.delete('test')
+
+        self.assertIsNone(result)

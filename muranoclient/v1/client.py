@@ -16,6 +16,7 @@ from muranoclient.common import http
 from muranoclient.v1 import actions
 from muranoclient.v1 import artifact_packages
 from muranoclient.v1 import categories
+from muranoclient.v1 import cloud_credentials
 from muranoclient.v1 import deployments
 from muranoclient.v1 import environments
 from muranoclient.v1 import instance_statistics
@@ -60,3 +61,4 @@ class Client(http.HTTPClient):
             self.packages = pkg_mgr
         self.actions = actions.ActionManager(self)
         self.categories = categories.CategoryManager(self)
+        self.cloudCredential = cloud_credentials.CloudCredentialManager(self)
