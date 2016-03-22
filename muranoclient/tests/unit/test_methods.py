@@ -16,18 +16,16 @@ import mock
 import testtools
 
 from muranoclient import client
-import muranoclient.v1.cloud_credentials as cloudCredential
 from muranoclient.v1 import actions
+import muranoclient.v1.cloud_credentials as cloudCredential
 import muranoclient.v1.environments as environments
 from muranoclient.v1 import packages
 import muranoclient.v1.sessions as sessions
 import muranoclient.v1.templates as templates
 
 
-
 def my_mock(*a, **b):
     return [a, b]
-
 
 api = mock.MagicMock(json_request=my_mock)
 

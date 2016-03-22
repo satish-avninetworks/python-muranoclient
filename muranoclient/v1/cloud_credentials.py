@@ -33,7 +33,7 @@ class CloudCredentialManager(base.Manager):
     def list(self):
         """It lists the Cloud Credentials.
         """
-        return self._list('/v1/identity/cloudcredential', 'cloudcredential')
+        return self._list('/v1/identity/cloudcredential', 'cloudcredentials')
 
     def create(self, data):
         """It creates a environment template
