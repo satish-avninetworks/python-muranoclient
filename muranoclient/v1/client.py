@@ -61,4 +61,4 @@ class Client(http.HTTPClient):
             self.packages = pkg_mgr
         self.actions = actions.ActionManager(self)
         self.categories = categories.CategoryManager(self)
-        self.cloud_credential = cloud_credentials.CloudCredentialManager(self)
+        self.cloud_credentials = cloud_credentials.CloudCredentialManager(self)
