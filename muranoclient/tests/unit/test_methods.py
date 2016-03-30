@@ -19,6 +19,7 @@ from muranoclient import client
 from muranoclient.v1 import actions
 import muranoclient.v1.cloud_credentials as cloudCredential
 import muranoclient.v1.environments as environments
+import muranoclient.v1.instance_credentials as instanceCredential
 from muranoclient.v1 import packages
 import muranoclient.v1.sessions as sessions
 import muranoclient.v1.templates as templates
@@ -350,6 +351,28 @@ class UnitTestsForClassesAndFunctions(testtools.TestCase):
 
     def test_cloud_credential_delete(self):
         manager = cloudCredential.CloudCredentialManager(api)
+        result = manager.delete('test')
+
+        self.assertIsNone(result)
+
+    def test_instance_credential_create(self):
+        manager = instanceCredential.InstanceCredentialManager(api)
+        result = manager.create({'name': 'test'})
+
+        self.assertEqual({'name': 'test'}, result.data)
+
+    def test_instance_credential_create_negative_without_parameters(self):
+        manager = instanceCredential.InstanceCredentialManager(api)
+        self.assertRaises(TypeError, manager.create)
+
+    def test_instance_credential_create_get(self):
+        manager = instanceCredential.InstanceCredentialManager(api)
+        result = manager.get('test')
+
+        self.assertIsNotNone(result.manager)
+
+    def test_instance_credential_delete(self):
+        manager = instanceCredential.InstanceCredentialManager(api)
         result = manager.delete('test')
 
         self.assertIsNone(result)

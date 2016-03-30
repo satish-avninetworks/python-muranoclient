@@ -20,6 +20,7 @@ from muranoclient.v1 import cloud_credentials
 from muranoclient.v1 import deployments
 from muranoclient.v1 import environments
 from muranoclient.v1 import instance_statistics
+from muranoclient.v1 import instance_credentials
 from muranoclient.v1 import packages
 from muranoclient.v1 import request_statistics
 from muranoclient.v1 import services
@@ -62,3 +63,6 @@ class Client(http.HTTPClient):
         self.actions = actions.ActionManager(self)
         self.categories = categories.CategoryManager(self)
         self.cloud_credentials = cloud_credentials.CloudCredentialManager(self)
+        self.instance_credentials = \
+            instance_credentials.InstanceCredentialManager(self)
+
